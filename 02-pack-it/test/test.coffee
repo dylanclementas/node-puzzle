@@ -11,11 +11,13 @@ describe 'packer', ->
     packer.pack data, (err, buffer) ->
       if err then return done err
       res = buffer
+      console.log 'buffer.length =', buffer.length
       assert buffer.length <= 128
       done()
 
   it 'should unpack data w/o errors', (done) ->
     packer.unpack res, (err, sample) ->
       if err then return done err
+      console.log 'Buffer =', sample.length, data.length
       assert.deepEqual data, sample
       done()
